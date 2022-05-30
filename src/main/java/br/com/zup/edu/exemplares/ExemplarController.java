@@ -10,7 +10,7 @@ import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/{id}/exemplares")
+@RequestMapping("/{isbn}/exemplares")
 public class ExemplarController {
 
     private final ExemplarRepository exemplarRepository;
@@ -24,8 +24,8 @@ public class ExemplarController {
 
 
     @PostMapping
-    public ResponseEntity<Void> cadastra(@PathVariable Long id, UriComponentsBuilder uri){
-        Livro livro = livroRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Livro não encontrado"));
+    public ResponseEntity<Void> cadastra(@PathVariable String isbn, UriComponentsBuilder uri){
+        Livro livro = livroRepository.findByIsbn(isbn).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Livro não encontrado"));
 
         Exemplar exemplar = new Exemplar(livro);
         exemplarRepository.save(exemplar);

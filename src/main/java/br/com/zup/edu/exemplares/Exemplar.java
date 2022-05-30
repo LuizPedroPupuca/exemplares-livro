@@ -10,7 +10,7 @@ public class Exemplar {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     private LocalDateTime dataCadastro = LocalDateTime.now();
 
     @ManyToOne(optional = false)
